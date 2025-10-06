@@ -20,8 +20,10 @@ const createCommande = async (req, res) => {
         });
       }
 
-      // Images optionnelles
-      const imagePaths = req.files ? req.files.map((file) => file.path) : [];
+      // Images optionnelles - stocker uniquement le nom du fichier
+      const imagePaths = req.files
+        ? req.files.map((file) => file.filename)
+        : [];
 
       const lastCommande = await CommandeModel.findOne(
         {},
